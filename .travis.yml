@@ -1,5 +1,4 @@
 sudo: false
-
 language: php
 php:
 - '5.6'
@@ -10,55 +9,25 @@ notifications:
   email:
     on_success: never
     on_failure: change
-
 matrix:
-  #fast_finish: true
   include:
-    - php: '5.6'
-      # env:
-      #  - SNIFF=1
-    - php: '7.0'
-      # env:
-      #  - SNIFF=1
-    - php: '7.1'
-     # env:
-      #  - SNIFF=1
-    - php: '7.2'
-    #  env:
-     #   - SNIFF=1
-    - php: '7.3'
-     # env:
-      #  - SNIFF=1
-
-before_install:
-  #- if [[ "$SNIFF" == "1" ]]; then export PHPCS_DIR=/tmp/phpcs; fi
-  #- if [[ "$SNIFF" == "1" ]]; then export SNIFFS_DIR=/tmp/sniffs; fi
-  # Install PHP_CodeSniffer.
-  #- if [[ "$SNIFF" == "1" ]]; then git clone -b master --depth 1 https://github.com/squizlabs/PHP_CodeSniffer.git $PHPCS_DIR; fi
-  # Install WordPress Coding Standards.
- # - if [[ "$SNIFF" == "1" ]]; then git clone -b master --depth 1 https://github.com/WordPress/WordPress-Coding-Standards.git $SNIFFS_DIR; fi
-  # Set install path for WordPress Coding Standards.
- # - if [[ "$SNIFF" == "1" ]]; then $PHPCS_DIR/bin/phpcs --config-set installed_paths $SNIFFS_DIR; fi
-  # After CodeSniffer install you should refresh your path.
-  #- if [[ "$SNIFF" == "1" ]]; then phpenv rehash; fi
-
+  - php: '5.6'
+  - php: '7.0'
+  - php: '7.1'
+  - php: '7.2'
+  - php: '7.3'
+before_install: 
 script:
-  # Run against WordPress Coding Standards.
-  # If you use a custom ruleset, change `--standard=WordPress` to point to your ruleset file,
-  # for example: `--standard=wpcs.xml`.
-  # You can use any of the normal PHPCS command line arguments in the command:
-  # https://github.com/squizlabs/PHP_CodeSniffer/wiki/Usage
-  #- if [[ "$SNIFF" == "1" ]]; then $PHPCS_DIR/bin/phpcs -p . --standard=WordPress; fi
 - echo 'Tested'
 before_deploy:
 - git config --local user.name "artikus11"
 - git config --local user.email "artikus.sol@gmail.ru"
-- git tag "1.0.0"
+- git tag "1.0.1"
+after_deploy: release created
 deploy:
   provider: releases
   api_key:
-    secure: VZ7j58tNC6CYVs5VN/P8GKW71DfPYbAvQvoHgxp9VF9l206vhQXINgV7IKI9zeYkrf3B6rrFRgl9jvlome2naTSNZX9GqS3JXtuIpBQKe0zV+/A2ert271AlzdnZ89cW14+Jq1XpKdu4Ya97vi9QNlvRy6boCiHLmrO7RKI+4PfOS1ewu8BseDNOsoTqMWweLwOb0q6lgjd4/viavf8kCZY1Eg4ysYq9txGi2lw2oS1d1AF4FMfiUq1KGZ1FQXJBx/P7fHCSUkT176nZCsE8HC2WcVGHPqi/xGe+QXJi2ZNQCiz6s8bV2SpaqfNtXloHeT/JiGFol8Nifuq7HrYBsGvWC7qwUWSLzOChqKGyAoZtA+PO/PRQAeJoA8NMS8fETeSRzkxT/zpqnffXaZmpEflxXrYqWyuK/0ZLhW/xwLav5YnXVqnrpkNlkwVhGEsros3026gSO/Jnu0dkxiVw9TmQ/i7Dqq1lLhwIxFu7Vm091w13PcDBgLV890PVRBw3eOmiDeQBuosJt0WXEYfA2F+TPt9fNviV6yUKlxdL54NaG+tBppvTO3FQCXGg6Fyy287uqNh8kXMD/xlAZkPLyDEQc1Y72cdqME7eGhQxonqai2oTnlCjMQPGE1Y8uF1Tt39bz4UTja06nAOR+0HMAyIbOvQAapazV0CXAKgXZXk=
+    secure: z0/woCpBOEJly37N4EPGe2hpy76d1J3TElmWphGMVBkiRTkHZEoHpsTbR9Lwcm5twEnuqZhfsALfEEMREOMi5xKu5ZS5dTKSgQ3FMHZAtO0rZbn+Cl7c5SVxS3sFpCM/7MD3xpEk7nyCi+dy4uzSvCiaoB/xiBgP2Qcc7g8EzDn4DSmz2LYra5VJfYMZ9LWpHBYITnTte12OHz4G37oUuVVM658UiiTAuJRpESXuzQKzfqAJEyGOnbOp45dbIymvSG6268bG9imF4mnuEl5YUAb8txvVeT0H49KUvcVqNkW9egwoOyigA02LdUTXKlkCtzOmFxMSl8TpFT9Dmc2FnZxYWTfH1Heh6i5HZAq5cYCRcYQtHQHB7iRHl4qB5g49gnmnJXL/rRhQr1p1LxCMDMkRJgt+IlYZY5ExmdtRohACuZTNIh91wJwTyVqr90XuOXESUWUkDpFz4nWfb+SlJ6IZb8exV4FqPFRoBomtL5Tjo/z6y/z+MU/GMYWSRZ48Fb2VLiJ02e/5JEsvLx2minzvOFPQJUwOyWsN63QS9N4Qx3yOSHOKJ+ve20b7wRopidGHCFg/v/fUtXrswHBVZiPc2SHz6HQbrQOZxLPtyr0tqz4ziPjiSEQmGl6B/1QUHhLszCxOeWwfwbBRQ8yM/461fQ7aLWSz1QVLjl+HyBY=
   file: latest.zip
   on:
-    repo: artikus11/art-woocommerce-order-one-click
-after_deploy: release created
+    repo: artikus11/art-woocommerce-separation

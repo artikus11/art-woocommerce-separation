@@ -15,26 +15,31 @@ class AWOOSEP_Front_End {
 	 */
 	public function __construct() {
 
-		/**
-		 * WooCommerce hooks
-		 */ //add_filter( 'woocommerce_product_loop_end', array( $this, 'separation_archives' ), 10, 1 );
-
-		//add_filter( 'woocommerce_before_output_product_categories', array( $this, 'separation_archives_before' ), 10, 1 );
 
 		add_filter( 'woocommerce_after_output_product_categories', [ $this, 'separation_archives_after' ] );
 
 	}
 
 
+	/**
+	 * Меняем вывод рубрик и товаров
+	 *
+	 * @return string
+	 * @since 1.0.1
+	 */
+	public function separation_archives_after() {
 
-	public function separation_archives_after( ) {
-
-		//error_log( print_r( woocommerce_product_loop_start(false), 1 ) );
 		return woocommerce_product_loop_end( false ) . $this->loop_start();
 
 	}
 
 
+	/**
+	 * Обертка для подключения файла
+	 *
+	 * @return false|string
+	 * @since 1.0.1
+	 */
 	public function loop_start() {
 
 		ob_start();

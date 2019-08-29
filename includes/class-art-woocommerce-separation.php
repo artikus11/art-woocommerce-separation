@@ -151,12 +151,13 @@ class Art_Woo_Sep {
 	public function php_version_notice() {
 
 		$message = sprintf(
-		/* translators: 1: Name plugins, 2:PHP version */ esc_html__(
-			                                                  '%1$s requires PHP version 5.6 or higher. Your current PHP version is %2$s. Please upgrade PHP version to run this plugin.',
-			                                                  'art-woocommerce-separation'
-		                                                  ),
-		                                                  esc_html( AWOOSEP_PLUGIN_NAME ),
-		                                                  PHP_VERSION
+			/* translators: 1: Name plugins, 2:PHP version */
+			esc_html__(
+				'%1$s requires PHP version 5.6 or higher. Your current PHP version is %2$s. Please upgrade PHP version to run this plugin.',
+				'art-woocommerce-separation'
+			),
+			esc_html( AWOOSEP_PLUGIN_NAME ),
+			PHP_VERSION
 		);
 
 		$this->admin_notice( $message, 'notice notice-error is-dismissible' );
@@ -310,8 +311,9 @@ class Art_Woo_Sep {
 	public function show_deactivate_notice() {
 
 		$message = sprintf(
-		/* translators: 1: Name author plugin */ __( '%s plugin has been deactivated.', 'art-woocommerce-separation' ),
-		                                         esc_attr( AWOOSEP_PLUGIN_NAME )
+			/* translators: 1: Name author plugin */
+			__( '%s plugin has been deactivated.', 'art-woocommerce-separation' ),
+			esc_attr( AWOOSEP_PLUGIN_NAME )
 		);
 
 		$this->admin_notice( $message, 'notice notice-warning is-dismissible' );
