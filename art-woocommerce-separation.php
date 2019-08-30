@@ -55,7 +55,6 @@ define( 'AWOOSEP_PLUGIN_NAME', $plugin_data['name'] );
 
 require __DIR__ . '/includes/class-art-woocommerce-separation.php';
 
-
 /**
  * The main function responsible for returning the Art_Woo_Sep object.
  *
