@@ -64,7 +64,7 @@ require __DIR__ . '/includes/class-art-woocommerce-separation.php';
  *
  * @since 1.0.0
  *
- * @return object ArtWoo_Order_One_Click class object.
+ * @return object Art_Woo_Sep class object.
  */
 if ( ! function_exists( 'awoosep' ) ) {
 
